@@ -13,10 +13,13 @@ if file is not None:
     img_bytes = file.getvalue()
     file = {'file': img_bytes}
     response = requests.post('https://isitacat.onrender.com/predict', files=file)
-    result = response.json()['result']
-    confidence = response.json()['confidence']
-    if result == 'cat':
-        st.write(f'This is a {result} with {confidence*100:.2f}% confidence.')
-    elif result == 'not a cat':
-        st.write(f'This is {result} with {confidence*100:.2f}% confidence.')
 
+    if response.status_code == 200:
+        result = response.json()['result']
+        confidence = response.json()['confidence']
+        if result == 'cat':
+            st.write(f'This is a {result} with {confidence*100:.2f}% confidence.')
+        elif result == 'not a cat':
+            st.write(f'This is {result} with {confidence*100:.2f}% confidence.')
+    else:
+        st.write('Something went wrong.')
