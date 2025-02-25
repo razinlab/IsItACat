@@ -1,0 +1,7 @@
+streamlit
+requests
+flask
+tensorflow
+pillow
+numpy
+gunicorn
