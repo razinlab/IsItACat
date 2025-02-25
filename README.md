@@ -27,3 +27,4 @@ CNN with 1m parameters achieves 96% accuracy on test set however, model sometime
 
 # $${\color{red}NOTE}$$
 If the Streamlit web app returns an error when uploading an image for classification, this is likely due to the Render free tier running out of RAM, in this case there is not much I ca do. Check if the API is running at [the API site](https://isitacat.onrender.com/), if it is running then in theory the web app should also run on a system with more RAM. Here is a working demonstration of the web app if the Render site returns an error:
+![](https://github.com/razinlab/IsItACat/blob/main/demonstration.gif)
