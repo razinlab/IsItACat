@@ -25,4 +25,4 @@ CNN with 1m parameters achieves 96% accuracy on test set however, model sometime
 - Possible data augmentation on existing data to increase model's ability to generalize
 - Accept different file formats such as PNG
 
-# - text in red
+# <span style="color: red"> Some green text </span>
