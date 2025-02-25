@@ -5,12 +5,13 @@ import io
 import tensorflow as tf
 import numpy as np
 import requests
+import os
 
 model = tf.keras.models.load_model('cat_classifier.keras')
 
 app = Flask(__name__)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -58,8 +59,8 @@ def main():
             st.write(f'Something went wrong: {response.status_code} - {response.text}')  # Include error details
 
 if __name__ == '__main__':
-    if st._is_running_with_streamlit:
-        main()  # Run Streamlit
+    port = int(os.environ.get('PORT', 8080))
+    if "RUN_STREAMLIT" in os.environ:
+        main()
     else:
-        app.run(debug=True, port=5000)
-
+        app.run(debug=True, host='0.0.0.0', port=port)
