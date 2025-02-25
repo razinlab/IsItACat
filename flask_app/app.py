@@ -6,6 +6,7 @@ import numpy as np
 import io
 
 model = tf.keras.models.load_model('cat_classifier.keras')
+litemodel = tf.lite.TFLiteConverter.from_keras_model(model)
 app = Flask(__name__)
 CORS(app)
 def prepare_img(image):
@@ -24,7 +25,7 @@ def home():
 def predict():
     image = Image.open(io.BytesIO(request.files['file'].read()))
     image = prepare_img(image)
-    prediction = model.predict(image)[0][0]
+    prediction = litemodel.predict(image)[0][0]
     result = 'cat' if prediction>=0.5 else 'not a cat'
     confidence = float(prediction) if prediction>=0.5 else 1-float(prediction)
     return jsonify({'result': result, 'confidence': confidence})
