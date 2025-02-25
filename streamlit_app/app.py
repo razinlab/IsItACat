@@ -14,7 +14,7 @@ if file is not None:
     files = {'file': img_bytes}
     
     try:
-        response = requests.post('http://127.0.0.1:10000/predict', files=files)
+        response = requests.post('https://isitacat.onrender.com/predict', files=files)
         st.write(f"Response Status Code: {response.status_code}")
         st.write(f"Response Content: {response.content}")
         
