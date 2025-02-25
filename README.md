@@ -1,6 +1,6 @@
 # Is It A Cat?
 
-A web app to classify pictures into two categories: cat and not cat.
+[A web app](https://isitacatapp.onrender.com) to classify pictures into two categories: cat and not cat.
 
 ## Project Overview
 A convolutional neural network (CNN) was trained on a dataset of ~30,000 cat images and ~25,000 images of other animals. The data was procured through multiple sources and the merged manually. Backend uses a Flask API to make predict calls while the frontend is constructed using Streamlit for simplicity. Code for the CNN is located in the Python notebook with the trained model being the .keras file, Flask and Streamlit app folders hold the script for the backend and frontend, test_call is a local script for testing the API on the stock image.
