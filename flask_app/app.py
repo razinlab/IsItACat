@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 import io
 
-model = tf.keras.models.load_model('IsItACat/cat_classifier.keras')
+model = tf.keras.models.load_model('cat_classifier.keras')
 app = Flask(__name__)
 
 def prepare_img(image):
