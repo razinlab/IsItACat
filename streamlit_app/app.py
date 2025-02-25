@@ -12,7 +12,7 @@ if file is not None:
     st.image(image, caption='Uploaded Image.', use_container_width=True)
     img_bytes = file.getvalue()
     file = {'file': img_bytes}
-    response = requests.post('http://127.0.0.1:5000/predict', files=file)
+    response = requests.post('https://isitacatapi.onrender.com/predict', files=file)
 
     if response.status_code == 200:
         result = response.json()['result']
