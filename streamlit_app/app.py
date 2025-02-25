@@ -5,21 +5,30 @@ import io
 
 st.title('Is It A Cat?')
 
-file = st.file_uploader('Upload an image', type=['jpg'])
+file = st.file_uploader('Upload an image', type=['jpg', 'jpeg'])
 
 if file is not None:
     image = Image.open(file)
-    st.image(image, caption='Uploaded Image.', use_container_width=True)
+    st.image(image, caption='Uploaded Image.', use_column_width=True)
     img_bytes = file.getvalue()
-    file = {'file': img_bytes}
-    response = requests.post('https://isitacat.onrender.com/predict', files=file)
-
-    if response.status_code == 200:
-        result = response.json()['result']
-        confidence = response.json()['confidence']
-        if result == 'cat':
-            st.write(f'This is a {result} with {confidence*100:.2f}% confidence.')
-        elif result == 'not a cat':
-            st.write(f'This is {result} with {confidence*100:.2f}% confidence.')
-    else:
-        st.write('Something went wrong.')
+    files = {'file': img_bytes}
+    
+    try:
+        response = requests.post('https://isitacat.onrender.com/predict', files=files)
+        st.write(f"Response Status Code: {response.status_code}")
+        st.write(f"Response Content: {response.content}")
+        
+        if response.status_code == 200:
+            result = response.json().get('result')
+            confidence = response.json().get('confidence')
+            
+            if result == 'cat':
+                st.write(f'This is a cat with {confidence*100:.2f}% confidence.')
+            elif result == 'not a cat':
+                st.write(f'This is not a cat with {confidence*100:.2f}% confidence.')
+            else:
+                st.write("Unexpected result from the API.")
+        else:
+            st.write("Something went wrong with the API request.")
+    except Exception as e:
+        st.write(f"An error occurred: {e}")
