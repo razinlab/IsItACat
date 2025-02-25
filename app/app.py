@@ -36,7 +36,7 @@ def predict():
 def main():
     st.title('Is It A Cat?')
 
-    uploaded_file = st.file_uploader('Upload an image', type=['jpg', 'png', 'jpeg']) # Add more types if needed
+    uploaded_file = st.file_uploader('Upload an image', type=['jpg'])
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
@@ -45,7 +45,7 @@ def main():
         img_bytes = uploaded_file.getvalue()
         files = {'file': img_bytes}
 
-        response = requests.post('http://127.0.0.1:5000/predict', files=files)  # Important: Localhost for embedded server
+        response = requests.post('http://127.0.0.1:5000/predict', files=files)
 
         if response.status_code == 200:
             result = response.json()['result']
