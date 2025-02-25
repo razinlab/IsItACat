@@ -15,7 +15,7 @@ def prepare_img(image):
     img = np.expand_dims(img, axis=0)
     return img
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
     image = Image.open(io.BytesIO(request.files['file'].read()))
     image = prepare_img(image)
