@@ -15,6 +15,10 @@ def prepare_img(image):
     img = img/255.0
     img = np.expand_dims(img, axis=0)
     return img
+    
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"status": "API is running"}), 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
