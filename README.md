@@ -24,3 +24,5 @@ CNN with 1m parameters achieves 96% accuracy on test set however, model sometime
 - Hyperparameter tuning with scikit-learn
 - Possible data augmentation on existing data to increase model's ability to generalize
 - Accept different file formats such as PNG
+
+# \color{red}NOTE}$$
